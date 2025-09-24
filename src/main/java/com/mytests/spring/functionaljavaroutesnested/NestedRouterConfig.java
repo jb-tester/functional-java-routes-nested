@@ -21,10 +21,10 @@ public class NestedRouterConfig {
 
         return  RouterFunctions
                 .nest(path("/route_nested/level1"),
-                        route(GET("/route1"), this::getRoute1)
+                        route(GET("/route1"), this::getRoute1) // correct request is generated
                                 .andRoute(GET("/route2"), this::getRoute2)
                                 .andNest(path("/level2"),
-                                        route(GET("/route21"), this::getRoute21)
+                                        route(GET("/route21"), this::getRoute21) // incorrect request is generated: `/level2` fragment is missing
                                                 .andRoute(GET("/route22"), this::getRoute22)
                                                 .andRoute(POST("/route22"), this::postRoute22)
                                 ));
